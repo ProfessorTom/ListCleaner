@@ -44,6 +44,6 @@ public class InputParser {
             }
         }
 
-        return (String[])nonBlankLines.toArray();
+        return nonBlankLines.toArray(new String[nonBlankLines.size()]);
     }
 }
