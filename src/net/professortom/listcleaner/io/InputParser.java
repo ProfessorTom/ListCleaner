@@ -18,7 +18,9 @@ public class InputParser {
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             //example line: Prelude to War by Robert T. Elson, 1
             for(String line; (line = br.readLine()) != null; ) {
-                final String[] columns = line.split(",");
+                String[] columns = line.split(",");
+                columns = InputParser.removeBlankLines(columns);
+
                 final String[] authorAndTitle = columns[0].split(" by ");
 
                 final BookRecord book = new BookRecord();
@@ -31,6 +33,17 @@ public class InputParser {
         }
 
         return books;
+    }
 
+    private static String[] removeBlankLines(final String[] lines) {
+        final List<String> nonBlankLines = new ArrayList<>();
+
+        for (final String current : lines) {
+            if(!current.isEmpty()) {
+                nonBlankLines.add(current);
+            }
+        }
+
+        return (String[])nonBlankLines.toArray();
     }
 }
