@@ -19,9 +19,14 @@ public class InputParser {
             //example line: Prelude to War by Robert T. Elson, 1
             for(String line; (line = br.readLine()) != null; ) {
                 String[] columns = line.split(",");
+
                 columns = InputParser.removeBlankLines(columns);
 
                 final String[] authorAndTitle = columns[0].split(" by ");
+
+                if(authorAndTitle.length == 1) { //no " by " because we've just read a column header
+                    continue;
+                }
 
                 final BookRecord book = new BookRecord();
                 book.title = authorAndTitle[0];
