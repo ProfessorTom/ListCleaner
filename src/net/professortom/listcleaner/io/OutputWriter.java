@@ -19,6 +19,7 @@ public class OutputWriter {
         books.add(0, columnHeaders);
 
         final File f = new File(outputName);
+        f.createNewFile(); // only creates file if file does not exist. See Java documentation for more details
 
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(f))) {
             for(final BookRecord book : books) {
@@ -27,6 +28,8 @@ public class OutputWriter {
                 sb.append(book.author).append(",");
                 sb.append(book.volume == -1 ? "Volume" : String.valueOf(book.volume)); //-1 sentinal value for header row
                 sb.append("\n");
+
+                bufferedWriter.write(sb.toString());
             }
         }
     }
