@@ -14,7 +14,7 @@ public class OutputWriter {
         final BookRecord columnHeaders = new BookRecord();
         columnHeaders.author = "Author";
         columnHeaders.title = "Title";
-        columnHeaders.volume = -1; //-1 sentinal value for header row
+        columnHeaders.volume = -1; //-1 sentinel value for header row
 
         books.add(0, columnHeaders);
 
@@ -26,7 +26,7 @@ public class OutputWriter {
                 final StringBuilder sb = new StringBuilder();
                 sb.append(book.title).append(",");
                 sb.append(book.author).append(",");
-                sb.append(book.volume == -1 ? "Volume" : String.valueOf(book.volume)); //-1 sentinal value for header row
+                sb.append(book.volume == -1 ? "Volume" : String.valueOf(book.volume)); //-1 sentinel value for header row
                 sb.append("\n");
 
                 bufferedWriter.write(sb.toString());
